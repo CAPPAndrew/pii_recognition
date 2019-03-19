@@ -10,9 +10,6 @@ location in the file (row and character position in the row), and text
 immediately surrounding match text. This output format enables the user to 
 easily verify the results and locate associated information. 
 
-The utility can also return a dictionary with the relevant data (versus writing 
-to a file), to allow for flexible interaction with possible PII.
-
 ## Authors
 
 - [Andrew Deng](https://github.com/CAPPAndrew)
@@ -22,13 +19,36 @@ to a file), to allow for flexible interaction with possible PII.
 
 ## Getting Started
 
-This utility requires Python 3.7 and the packages [`re`](https://docs.python.org/3/library/re.html) and [`nltk`](https://www.nltk.org/).
+This utility requires at least Python 3.6 and the packages [`re`](https://docs.python.org/3/library/re.html) and [`nltk`](https://www.nltk.org/).
+
+The utility can be run on either a file or a string, and outputs the results into a file. 
+
+
+### Examples
+Below is an example of a command line input to run the utilty on the file **FILENAME** and save the output to the file **OUTPUT_FILE**
+```
+$ python3.6 finder.py --ascii_file 'FILENAME' --output_file OUTPUT_FILE
+```
+
+Below is an example of a command line input to run this utilty on the string **pii_string** and save the output to the file **OUTPUT_FILE**.
+```
+$ python3.6 finder.py --ascii_string "I am 90 years old and I have an SSN of 310-74-3223" --output_file OUTPUT_FILE
+```
+
+## File Descriptions
+
+ - Main Utility: [`finder.py`](https://github.com/natashamathur/life_of_pii/blob/master/finder.py)
+ - Ancilliary Code: [`checkers`](https://github.com/natashamathur/life_of_pii/tree/master/checkers) [`area_codes.json`](https://github.com/natashamathur/life_of_pii/blob/master/area_codes.json) 
+ - Used for Testing: [`fake_pii.txt`](https://github.com/natashamathur/life_of_pii/blob/master/fake_pii.txt) [`found.json`](https://github.com/natashamathur/life_of_pii/blob/master/found.json)
 
 ## Uses
 This utility provides the ability to extract multiple types of PII from 
 documents with large quantities of data in an efficient manner. For example, 
 this could be used to check public-facing documents prior to publication to 
 ensure that PII is not inadvertently exposed.
+
+The [`fake_pii.txt`](https://github.com/natashamathur/life_of_pii/blob/master/fake_pii.txt) is provided as an example to showcase a potential use of the utility as a categorizer of scattered PII within a single document.
+
 
 ## Methodology
 The PII utility relies heavily on the `re` library for regex text matching, and
@@ -71,7 +91,7 @@ IDs that are randomly or sequentially generated.
 - Swedish National ID Number
 - UK NHS ID Number
 
-**REGEXed PII**
+**REGEX'ed PII**
 - Age
 - American VIN Number
 - Australian Medicare Number
@@ -83,3 +103,4 @@ IDs that are randomly or sequentially generated.
 - International Phone Number
 - MAC Address
 - UK Insurance ID Number
+- Physical Address
